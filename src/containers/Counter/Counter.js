@@ -38,7 +38,7 @@ class Counter extends Component {
                 <button onClick={this.props.onStoreResult} >Store Result</button>
                 <ul>
                     {this.props.storedResult.map((storeResult) => {
-                        return (<li key={storeResult.key} onClick={this.props.onDeleteResult}>{storeResult.value}</li>);
+                        return (<li key={storeResult.id} onClick={() => this.props.onDeleteResult(storeResult.id)}>{storeResult.value}</li>);
                     })}
                 </ul>
             </div>
@@ -54,6 +54,7 @@ const mapStateToProps = state => {
     };
 };
 
+//Takes dispatch action from Redux Provider(mainly from reducer) to convert it in props.
 const mapDispatchToProps = dispatch => {
     return {
         onIncrementCounter: () => dispatch({ type: "INCREMENT" }),
@@ -61,7 +62,7 @@ const mapDispatchToProps = dispatch => {
         onAddCounter: () => dispatch({ type: "ADD", val: 5 }),
         onSubtractCounter: () => dispatch({ type: "SUB", val: 5 }),
         onStoreResult: () => dispatch({ type: "STORE_RESULT" }),
-        onDeleteResult: () => dispatch({ type: "DELETE_RESULT" }),
+        onDeleteResult: (id) => dispatch({ type: "DELETE_RESULT", actionElId: id }),
     };
 };
 
