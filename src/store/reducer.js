@@ -32,7 +32,7 @@ const reducer = (state = initState, action) => {
         case 'STORE_RESULT':
             return {
                 ...state,
-                results: state.results.concat({ value: state.counter })
+                results: state.results.concat({ key: new Date(), value: state.counter })
             }
     }
     return state;
